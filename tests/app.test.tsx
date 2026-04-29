@@ -7,11 +7,9 @@ describe("App", () => {
   it("renders the SGA championship cards with detail links", () => {
     render(<App />);
 
-    expect(
-      screen.getByRole("heading", {
-        name: /campeonatos sga/i,
-      }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      /campeões/i,
+    );
 
     expect(
       screen.getByRole("link", {
@@ -19,7 +17,7 @@ describe("App", () => {
       }),
     ).toHaveAttribute(
       "href",
-      "https://santos-games.com/campeonatos/vct-ribeirao-free-elo",
+      "/campeonatos/vct-ribeirao",
     );
 
     expect(screen.getAllByRole("link", { name: /ver detalhes/i })).toHaveLength(

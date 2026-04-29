@@ -21,6 +21,9 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
+const appBasePath = import.meta.env.VITE_BASE_PATH ?? "/campeonatos/";
+const appPath = (path: string) =>
+  `${appBasePath}${path.replace(/^\/+/, "")}`;
 
 type Championship = {
   title: string;
@@ -40,9 +43,9 @@ const championships: Championship[] = [
     game: "Valorant",
     location: "Ribeirão Preto",
     category: "Free Elo",
-    image: "/vct-ribeirao_sga.avif",
+    image: appPath("vct-ribeirao_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Valorant",
-    href: `${siteConfig.url}/vct-ribeirao`,
+    href: appPath("vct-ribeirao"),
   },
   {
     title: "VCT Ribeirão - Série C",
@@ -50,9 +53,9 @@ const championships: Championship[] = [
     game: "Valorant",
     location: "Ribeirão Preto",
     category: "Série C",
-    image: "/vct-ribeirao_sga.avif",
+    image: appPath("vct-ribeirao_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Valorant",
-    href: `${siteConfig.url}/vct-ribeirao/serie-c`,
+    href: appPath("vct-ribeirao/serie-c"),
   },
   {
     title: "VCT Ribeirão - Série B",
@@ -60,9 +63,9 @@ const championships: Championship[] = [
     game: "Valorant",
     location: "Ribeirão Preto",
     category: "Série B",
-    image: "/vct-ribeirao_sga.avif",
+    image: appPath("vct-ribeirao_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Valorant",
-    href: `${siteConfig.url}/vct-ribeirao/serie-b`,
+    href: appPath("vct-ribeirao/serie-b"),
   },
   {
     title: "CS Maior do Interior - Ribeirão Preto",
@@ -70,9 +73,9 @@ const championships: Championship[] = [
     game: "Counter-Strike",
     location: "Ribeirão Preto",
     category: "A definir",
-    image: "/cs-prime_sga.avif",
+    image: appPath("cs-prime_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Counter-Strike",
-    href: `${siteConfig.url}/campeonatos/cs-maior-do-interior-ribeirao-preto`,
+    href: appPath("cs-maior-do-interior"),
   },
   {
     title: "SGA League Ribeirão - Campeonato de LOL",
@@ -81,7 +84,7 @@ const championships: Championship[] = [
     location: "Ribeirão Preto",
     category: "A definir",
     image: undefined,
-    href: `${siteConfig.url}/campeonatos/sga-league-ribeirao-campeonato-de-lol`,
+    href: appPath("sga-league-ribeirao"),
   },
 ];
 
@@ -205,7 +208,7 @@ export function App() {
               >
                 <div className="flex size-11 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-[0_0_32px_-8px_rgba(255,43,43,0.6)] transition hover:border-white/20">
                   <img
-                    src="/sga-logo.png"
+                    src={appPath("sga-logo.png")}
                     alt="Logo da SGA"
                     className="size-full object-contain p-2"
                     loading="eager"
@@ -322,7 +325,7 @@ export function App() {
               aria-label="Ir para o site da SGA"
               className="flex items-center gap-3 opacity-70 transition hover:opacity-100"
             >
-              <img src="/sga-logo.png" alt="Logo da SGA" className="size-7 object-contain" />
+              <img src={appPath("sga-logo.png")} alt="Logo da SGA" className="size-7 object-contain" />
               <span className="text-sm font-semibold text-white">Santos Games Arena</span>
             </a>
 
