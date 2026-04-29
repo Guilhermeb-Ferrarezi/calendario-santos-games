@@ -21,9 +21,8 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 
-const appBasePath = import.meta.env.VITE_BASE_PATH ?? "/campeonatos/";
 const appPath = (path: string) =>
-  `${appBasePath}${path.replace(/^\/+/, "")}`;
+  "https://santos-games.com/";
 
 type Championship = {
   title: string;
@@ -55,7 +54,7 @@ const championships: Championship[] = [
     category: "Série C",
     image: appPath("vct-ribeirao_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Valorant",
-    href: appPath("vct-ribeirao/serie-c"),
+    href: appPath("vct-rp/serie-c"),
   },
   {
     title: "VCT Ribeirão - Série B",
@@ -65,7 +64,7 @@ const championships: Championship[] = [
     category: "Série B",
     image: appPath("vct-ribeirao_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Valorant",
-    href: appPath("vct-ribeirao/serie-b"),
+    href: appPath("vct-rp/serie-b"),
   },
   {
     title: "CS Maior do Interior - Ribeirão Preto",
