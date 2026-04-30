@@ -127,7 +127,7 @@ const formatList = (items: string[]) => {
 
 function ChampionshipCard({ championship }: { championship: Championship }) {
   return (
-    <Card className="group relative flex flex-col overflow-hidden border-white/10 bg-[#0d0d14]/90 shadow-[0_24px_80px_-36px_rgba(255,43,43,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_32px_80px_-28px_rgba(255,43,43,0.55)]">
+    <Card className="group relative flex flex-col overflow-hidden border-white/10 bg-[#0d0d14]/90 pt-0 shadow-[0_24px_80px_-36px_rgba(255,43,43,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_32px_80px_-28px_rgba(255,43,43,0.55)]">
       <div className="relative aspect-[16/9] overflow-hidden">
         {championship.image ? (
           <img
