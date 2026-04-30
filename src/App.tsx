@@ -168,7 +168,7 @@ function ChampionshipCard({ championship }: { championship: Championship }) {
             {championship.title}
           </CardTitle>
           <CardDescription className="mt-1.5 text-sm text-white/55">
-            {championship.disabledCta ? "Competição presencial — vagas limitadas" : "Competição presencial — vagas esgotadas"}
+            {championship.disabledCta ? "Competição presencial — vagas limitadas" : " Competição presencial — vagas esgotadas"}
           </CardDescription>
         </div>
 
@@ -341,7 +341,7 @@ export function App() {
               Fale com a gente no WhatsApp e tire todas as suas dúvidas sobre inscrições e campeonatos.
             </p>
             <a
-              href="https://wa.me/5516993443348"
+              href="https://wa.me/5516991069776"
               rel="noreferrer"
               target="_blank"
               className={cn(
@@ -371,7 +371,7 @@ export function App() {
             </p>
 
             <a
-              href="https://wa.me/5516993443348"
+              href="https://wa.me/5516991069776"
               target="_blank"
               rel="noreferrer"
               className="text-xs font-medium text-white/45 transition hover:text-white"
