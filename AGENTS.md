@@ -2,7 +2,7 @@
 
 ## Visão geral
 
-Este projeto pertence à **SGA — Santos Games Arena** (https://santos-games.com).
+este projeto pertence à **SGA — Santos Games Arena** (https://santos-games.com).
 
 A SGA é uma arena gamer e organizadora de campeonatos presenciais de e-sports. Toda interface desenvolvida neste projeto deve transmitir:
 
