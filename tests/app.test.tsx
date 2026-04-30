@@ -12,16 +12,22 @@ describe("App", () => {
     );
 
     expect(
+      screen.getByRole("button", {
+        name: /inscrições encerradas/i,
+      }),
+    ).toBeDisabled();
+
+    expect(
       screen.getByRole("link", {
-        name: /ver detalhes do vct ribeirão - free elo/i,
+        name: /ver detalhes do vct ribeirão - série a/i,
       }),
     ).toHaveAttribute(
       "href",
-      "/campeonatos/vct-ribeirao",
+      "https://santos-games.com/vct-ribeirao/serie-a",
     );
 
     expect(screen.getAllByRole("link", { name: /ver detalhes/i })).toHaveLength(
-      5,
+      3,
     );
     expect(
       screen.queryByRole("link", { name: /abrir campeonatos/i }),

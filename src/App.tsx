@@ -25,6 +25,7 @@ const appPath = (path: string) =>
   `${appBasePath}${path.replace(/^\/+/, "")}`;
 
 type Championship = {
+  id: string;
   title: string;
   date: string;
   game: string;
@@ -42,6 +43,7 @@ type Championship = {
 
 const championships: Championship[] = [
   {
+    id: "vct-ribeirao-free-elo",
     title: "VCT Ribeirão - Free Elo",
     date: "17/05",
     game: "Valorant",
@@ -57,6 +59,18 @@ const championships: Championship[] = [
     href: "https://santos-games.com/vct-ribeirao",
   },
   {
+    id: "vct-ribeirao-serie-a",
+    title: "VCT Ribeirão - Série A",
+    date: "24/05",
+    game: "Valorant",
+    location: "Ribeirão Preto",
+    category: "Série A",
+    image: appPath("vct-ribeirao_sga.avif"),
+    imageAlt: "Arena SGA com clima de campeonato Valorant",
+    href: "https://santos-games.com/vct-ribeirao/serie-a",
+  },
+  {
+    id: "vct-ribeirao-serie-c",
     title: "VCT Ribeirão - Série C",
     date: "31/05",
     game: "Valorant",
@@ -67,6 +81,7 @@ const championships: Championship[] = [
     href: "https://santos-games.com/vct-ribeirao/serie-c",
   },
   {
+    id: "vct-ribeirao-serie-b",
     title: "VCT Ribeirão - Série B",
     date: "07/06",
     game: "Valorant",
@@ -77,6 +92,7 @@ const championships: Championship[] = [
     href: "https://santos-games.com/vct-ribeirao/serie-b",
   },
   {
+    id: "cs-maior-do-interior-ribeirao-preto",
     title: "CS Maior do Interior - Ribeirão Preto",
     date: "14/06",
     game: "Counter-Strike 2",
@@ -87,6 +103,7 @@ const championships: Championship[] = [
     href: "",
   },
   {
+    id: "sga-league-ribeirao-campeonato-de-lol",
     title: "SGA League Ribeirão - Campeonato de LOL",
     date: "12/07",
     game: "League of Legends",
@@ -300,7 +317,7 @@ export function App() {
             {filtered.length > 0 ? (
               filtered.map((championship) => (
                 <ChampionshipCard
-                  key={championship.href}
+                  key={championship.id}
                   championship={championship}
                 />
               ))
