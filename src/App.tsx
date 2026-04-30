@@ -65,7 +65,7 @@ const championships: Championship[] = [
     game: "Valorant",
     location: "Ribeirão Preto",
     category: "Série A",
-    image: appPath("vct-ribeirao_sga.avif"),
+    image: appPath("vct-serie-a.png"),
     imageAlt: "Arena SGA com clima de campeonato Valorant",
     href: "https://santos-games.com/vct-ribeirao/serie-a",
   },
