@@ -43,20 +43,31 @@ type Championship = {
 
 const championships: Championship[] = [
   {
-    id: "vct-ribeirao-free-elo",
-    title: "VCT Ribeirão - Free Elo",
+    id: "vct-ribeirao-all-rank",
+    title: "VCT Ribeirão - All Rank",
     date: "17/05",
     game: "Valorant",
     location: "Ribeirão Preto",
-    category: "Free Elo",
+    category: "All Rank",
     topBadge: "Valorant",
-    statusBadge: "LOTADO",
+    statusBadge: "ESGOTADAS",
     ctaLabel: "Inscrições encerradas",
     disabledCta: true,
     disabledMedia: true,
     image: appPath("vct-ribeirao_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Valorant",
     href: "https://santos-games.com/vct-ribeirao",
+  },
+  {
+    id: "vct-ribeirao-serie-a",
+    title: "VCT Ribeirão - Série A",
+    date: "24/05",
+    game: "Valorant",
+    location: "Ribeirão Preto",
+    category: "Série A",
+    image: appPath("vct-ribeirao_sga.avif"),
+    imageAlt: "Arena SGA com clima de campeonato Valorant",
+    href: "https://santos-games.com/vct-ribeirao/serie-a",
   },
   {
     id: "vct-ribeirao-serie-c",
@@ -80,27 +91,17 @@ const championships: Championship[] = [
     imageAlt: "Arena SGA com clima de campeonato Valorant",
     href: "https://santos-games.com/vct-ribeirao/serie-b",
   },
+  
   {
-    id: "vct-ribeirao-serie-a",
-    title: "VCT Ribeirão - Série A",
-    date: "24/05",
-    game: "Valorant",
-    location: "Ribeirão Preto",
-    category: "Série A",
-    image: appPath("vct-ribeirao_sga.avif"),
-    imageAlt: "Arena SGA com clima de campeonato Valorant",
-    href: "https://santos-games.com/vct-ribeirao/serie-a",
-  },
-  {
-    id: "cs-maior-do-interior-ribeirao-preto",
-    title: "CS Maior do Interior - Ribeirão Preto",
+    id: "cs-prime-do-interior-ribeirao-preto",
+    title: "CS Prime do Interior - Ribeirão Preto",
     date: "14/06",
     game: "Counter-Strike 2",
     location: "Ribeirão Preto",
     category: "A definir",
     image: appPath("cs-prime_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Counter-Strike",
-    href: "",
+    href: "https://santos-games.com/cs2/prime",
   },
   {
     id: "sga-league-ribeirao-campeonato-de-lol",
@@ -167,7 +168,7 @@ function ChampionshipCard({ championship }: { championship: Championship }) {
             {championship.title}
           </CardTitle>
           <CardDescription className="mt-1.5 text-sm text-white/55">
-            Competição presencial — vagas limitadas
+            {championship.disabledCta ? "Competição presencial — vagas limitadas" : "Competição presencial — vagas esgotadas"}
           </CardDescription>
         </div>
 
