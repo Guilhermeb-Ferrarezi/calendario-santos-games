@@ -15,7 +15,6 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardFooter,
   CardTitle,
   CardDescription,
@@ -90,12 +89,7 @@ const championships: Championship[] = [
 
 const games = [...new Set(championships.map((c) => c.game))];
 
-const stats = [
-  { label: "Campeonatos", value: "5" },
-  { label: "Jogos", value: "3" },
-  { label: "Times", value: "32+" },
-  { label: "Temporada", value: "Ativa" },
-];
+
 
 function ChampionshipCard({ championship }: { championship: Championship }) {
   return (
@@ -238,20 +232,7 @@ export function App() {
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="grid shrink-0 grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/8 lg:grid-cols-4">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col items-center justify-center gap-1 bg-[#0a0a0f]/90 px-6 py-5 backdrop-blur"
-                >
-                  <span className="text-2xl font-extrabold text-white">{stat.value}</span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/40">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
+           
           </section>
 
           {/* Divider + Busca */}
