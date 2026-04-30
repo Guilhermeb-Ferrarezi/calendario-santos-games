@@ -54,7 +54,7 @@ const championships: Championship[] = [
     ctaLabel: "Inscrições encerradas",
     disabledCta: true,
     disabledMedia: true,
-    image: appPath("vct-ribeirao_sga.avif"),
+    image: appPath("vct-all-rank.png"),
     imageAlt: "Arena SGA com clima de campeonato Valorant",
     href: "https://santos-games.com/vct-ribeirao",
   },
