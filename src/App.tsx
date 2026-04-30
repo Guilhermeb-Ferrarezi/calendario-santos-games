@@ -79,7 +79,7 @@ const championships: Championship[] = [
   {
     title: "CS Maior do Interior - Ribeirão Preto",
     date: "14/06",
-    game: "Counter-Strike",
+    game: "Counter-Strike 2",
     location: "Ribeirão Preto",
     category: "A definir",
     image: appPath("cs-prime_sga.avif"),
@@ -98,6 +98,13 @@ const championships: Championship[] = [
 ];
 
 const games = [...new Set(championships.map((c) => c.game))];
+
+const formatList = (items: string[]) => {
+  if (items.length <= 1) return items[0] ?? "";
+  if (items.length === 2) return `${items[0]} e ${items[1]}`;
+
+  return `${items.slice(0, -1).join(", ")} e ${items[items.length - 1]}`;
+};
 
 
 
@@ -258,7 +265,7 @@ export function App() {
                   te espera.
                 </h1>
                 <p className="max-w-xl text-base leading-7 text-white/60 sm:text-lg">
-                  Campeonatos presenciais de {games.join(", ")}.
+                  Campeonatos presenciais de {formatList(games)}.
                 </p>
               </div>
             </div>
