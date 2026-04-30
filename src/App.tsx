@@ -94,22 +94,22 @@ const championships: Championship[] = [
   
   {
     id: "cs-prime-do-interior-ribeirao-preto",
-    title: "CS Prime do Interior - Ribeirão Preto",
+    title: "CS Prime - Ribeirão Preto",
     date: "14/06",
     game: "Counter-Strike 2",
     location: "Ribeirão Preto",
-    category: "A definir",
+    category: "All Rank",
     image: appPath("cs-prime_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Counter-Strike",
     href: "https://santos-games.com/cs2/prime",
   },
   {
     id: "sga-league-ribeirao-campeonato-de-lol",
-    title: "SGA League Ribeirão - Campeonato de LOL",
+    title: "SGA League RP",
     date: "12/07",
     game: "League of Legends",
     location: "Ribeirão Preto",
-    category: "A definir",
+    category: "All Rank",
     image: undefined,
     href: "",
   },
@@ -168,7 +168,7 @@ function ChampionshipCard({ championship }: { championship: Championship }) {
             {championship.title}
           </CardTitle>
           <CardDescription className="mt-1.5 text-sm text-white/55">
-            {championship.disabledCta ? "Competição presencial — vagas limitadas" : " Competição presencial — vagas esgotadas"}
+            {championship.disabledCta ? "Campeonato presencial — vagas limitadas" : " Campeonato presencial — vagas esgotadas"}
           </CardDescription>
         </div>
 
