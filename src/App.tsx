@@ -30,6 +30,11 @@ type Championship = {
   game: string;
   location: string;
   category: string;
+  topBadge?: string;
+  statusBadge?: string;
+  ctaLabel?: string;
+  disabledCta?: boolean;
+  disabledMedia?: boolean;
   image?: string;
   imageAlt?: string;
   href: string;
@@ -42,6 +47,11 @@ const championships: Championship[] = [
     game: "Valorant",
     location: "Ribeirão Preto",
     category: "Free Elo",
+    topBadge: "Valorant",
+    statusBadge: "LOTADO",
+    ctaLabel: "Inscrições encerradas",
+    disabledCta: true,
+    disabledMedia: true,
     image: appPath("vct-ribeirao_sga.avif"),
     imageAlt: "Arena SGA com clima de campeonato Valorant",
     href: "https://santos-games.com/vct-ribeirao",
@@ -99,24 +109,31 @@ function ChampionshipCard({ championship }: { championship: Championship }) {
           <img
             src={championship.image}
             alt={championship.imageAlt}
-            className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+            className={cn(
+              "absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]",
+              championship.disabledMedia &&
+                "scale-[1.01] blur-[2px] grayscale opacity-55 group-hover:scale-[1.01]",
+            )}
             loading="lazy"
           />
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,43,43,0.28),transparent_60%),linear-gradient(180deg,rgba(8,8,12,0.85),rgba(8,8,12,0.98))]" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d14] via-[#0d0d14]/40 to-transparent" />
+        {championship.disabledMedia ? (
+          <div className="absolute inset-0 bg-black/25 backdrop-blur-[1px]" />
+        ) : null}
         <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.06)_50%,transparent_100%)] opacity-0 transition group-hover:opacity-100" />
 
         <Badge
           variant="outline"
           className="absolute left-4 top-4 rounded-full border-white/15 bg-black/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70 backdrop-blur-sm"
         >
-          {championship.date}
+          {championship.topBadge ?? championship.date}
         </Badge>
 
         <Badge className="absolute right-4 top-4 rounded-full bg-primary/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-white backdrop-blur-sm">
-          {championship.game}
+          {championship.statusBadge ?? championship.game}
         </Badge>
       </div>
 
@@ -158,18 +175,33 @@ function ChampionshipCard({ championship }: { championship: Championship }) {
       </div>
 
       <CardFooter className="border-t border-white/8 bg-black/20 px-5 py-4">
-        <a
-          href={championship.href}
-          aria-label={`Ver detalhes do ${championship.title}`}
-          rel="noreferrer"
-          className={cn(
-            buttonVariants({ size: "lg" }),
-            "w-full rounded-full bg-primary text-sm font-bold uppercase tracking-wide text-white hover:bg-primary/85",
-          )}
-        >
-          Garantir minha vaga
-          <ArrowRightIcon data-icon="inline-end" />
-        </a>
+        {championship.disabledCta ? (
+          <button
+            type="button"
+            disabled
+            aria-disabled="true"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "w-full rounded-full bg-primary text-sm font-bold uppercase tracking-wide text-white opacity-60 grayscale cursor-not-allowed hover:bg-primary",
+            )}
+          >
+            {championship.ctaLabel ?? "Garantir minha vaga"}
+            <ArrowRightIcon data-icon="inline-end" />
+          </button>
+        ) : (
+          <a
+            href={championship.href}
+            aria-label={`Ver detalhes do ${championship.title}`}
+            rel="noreferrer"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "w-full rounded-full bg-primary text-sm font-bold uppercase tracking-wide text-white hover:bg-primary/85",
+            )}
+          >
+            {championship.ctaLabel ?? "Garantir minha vaga"}
+            <ArrowRightIcon data-icon="inline-end" />
+          </a>
+        )}
       </CardFooter>
     </Card>
   );
@@ -227,7 +259,6 @@ export function App() {
                 </h1>
                 <p className="max-w-xl text-base leading-7 text-white/60 sm:text-lg">
                   Campeonatos presenciais de {games.join(", ")}.
-                  Escolha sua batalha e garanta sua vaga.
                 </p>
               </div>
             </div>
