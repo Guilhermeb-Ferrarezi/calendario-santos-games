@@ -111,7 +111,7 @@ const championships: Championship[] = [
     location: "Ribeirão Preto",
     category: "All Rank",
     image: appPath("nexus-cup.png"),
-    href: "",
+    href: "https://santos-games.com/lol/nexus",
   },
 ];
 
