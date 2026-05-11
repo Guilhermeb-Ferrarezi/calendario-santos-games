@@ -31,6 +31,9 @@ type Championship = {
   game: string;
   location: string;
   category: string;
+  featured?: boolean;
+  eyebrow?: string;
+  summary?: string;
   topBadge?: string;
   statusBadge?: string;
   ctaLabel?: string;
@@ -42,6 +45,24 @@ type Championship = {
 };
 
 const championships: Championship[] = [
+  {
+    id: "vct-sp",
+    title: "VCT-SP",
+    date: "05/07",
+    game: "Valorant",
+    location: "Santos Games Arena",
+    category: "Destaque",
+    featured: true,
+    eyebrow: "Projeto em destaque",
+    summary:
+      "O campeonato que estávamos trabalhando, agora em evidência no topo do calendário.",
+    topBadge: "Valorant",
+    statusBadge: "ABERTO",
+    ctaLabel: "Ver VCT-SP",
+    image: appPath("vct-ribeirao_sga.avif"),
+    imageAlt: "Arte do campeonato VCT-SP da Santos Games Arena",
+    href: "https://santos-games.com/vct-sp/",
+  },
   {
     id: "vct-ribeirao-all-rank",
     title: "VCT Ribeirão - All Rank",
@@ -127,6 +148,81 @@ const formatList = (items: string[]) => {
 
 
 function ChampionshipCard({ championship }: { championship: Championship }) {
+  if (championship.featured) {
+    return (
+      <Card className="group relative flex min-h-[420px] flex-col overflow-hidden border-primary/30 bg-[radial-gradient(circle_at_top_left,rgba(255,43,43,0.22),transparent_45%),#0d0d14] pt-0 shadow-[0_28px_90px_-34px_rgba(255,43,43,0.65)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_34px_100px_-28px_rgba(255,43,43,0.8)] sm:col-span-2 xl:col-span-2">
+        <div className="relative flex-1 overflow-hidden">
+          {championship.image ? (
+            <img
+              src={championship.image}
+              alt={championship.imageAlt}
+              className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+              loading="lazy"
+            />
+          ) : null}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d14] via-[#0d0d14]/75 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,43,43,0.35),transparent_35%),linear-gradient(180deg,transparent,rgba(8,8,12,0.95))]" />
+
+          <div className="relative flex h-full flex-col justify-between p-6 sm:p-7">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge variant="outline" className="rounded-full border-white/15 bg-black/35 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70 backdrop-blur-sm">
+                {championship.eyebrow ?? "Projeto em destaque"}
+              </Badge>
+              <Badge className="rounded-full bg-primary/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-white backdrop-blur-sm">
+                {championship.statusBadge ?? championship.game}
+              </Badge>
+            </div>
+
+            <div className="max-w-xl space-y-4">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary/90">
+                  {championship.game}
+                </p>
+                <CardTitle className="mt-2 text-4xl font-black uppercase leading-[0.95] text-white sm:text-5xl">
+                  {championship.title}
+                </CardTitle>
+              </div>
+
+              <CardDescription className="max-w-lg text-sm leading-6 text-white/70 sm:text-base">
+                {championship.summary}
+              </CardDescription>
+
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">Data</p>
+                  <p className="mt-1 text-sm font-semibold text-white">{championship.date}</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">Local</p>
+                  <p className="mt-1 text-sm font-semibold text-white">{championship.location}</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">Categoria</p>
+                  <p className="mt-1 text-sm font-semibold text-white">{championship.category}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <CardFooter className="border-t border-white/8 bg-black/25 px-6 py-4">
+          <a
+            href={championship.href}
+            aria-label={`Ver detalhes do ${championship.title}`}
+            rel="noreferrer"
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "w-full rounded-full bg-primary text-sm font-bold uppercase tracking-wide text-white hover:bg-primary/85 sm:w-auto",
+            )}
+          >
+            {championship.ctaLabel ?? "Ver campeonato"}
+            <ArrowRightIcon data-icon="inline-end" />
+          </a>
+        </CardFooter>
+      </Card>
+    );
+  }
+
   return (
     <Card className="group relative flex flex-col overflow-hidden border-white/10 bg-[#0d0d14]/90 pt-0 shadow-[0_24px_80px_-36px_rgba(255,43,43,0.35)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_32px_80px_-28px_rgba(255,43,43,0.55)]">
       <div className="relative aspect-[16/9] overflow-hidden">
@@ -316,7 +412,7 @@ export function App() {
           {/* Cards */}
           <section className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {filtered.length > 0 ? (
-              filtered.map((championship) => (
+          filtered.map((championship) => (
                 <ChampionshipCard
                   key={championship.id}
                   championship={championship}
