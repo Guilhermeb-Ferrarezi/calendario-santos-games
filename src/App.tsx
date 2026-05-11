@@ -53,11 +53,11 @@ const championships: Championship[] = [
     location: "Santos Games Arena",
     category: "Destaque",
     featured: true,
-    eyebrow: "Projeto em destaque",
+    eyebrow: "Campeonato em destaque",
     summary:
       "O campeonato que estávamos trabalhando, agora em evidência no topo do calendário.",
     topBadge: "Valorant",
-    statusBadge: "ABERTO",
+    statusBadge: "VALORANT",
     ctaLabel: "Ver VCT-SP",
     image: appPath("vct-ribeirao_sga.avif"),
     imageAlt: "Arte do campeonato VCT-SP da Santos Games Arena",
@@ -150,69 +150,75 @@ const formatList = (items: string[]) => {
 function ChampionshipCard({ championship }: { championship: Championship }) {
   if (championship.featured) {
     return (
-      <Card className="group relative flex min-h-[420px] flex-col overflow-hidden border-primary/30 bg-[radial-gradient(circle_at_top_left,rgba(255,43,43,0.22),transparent_45%),#0d0d14] pt-0 shadow-[0_28px_90px_-34px_rgba(255,43,43,0.65)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_34px_100px_-28px_rgba(255,43,43,0.8)] sm:col-span-2 xl:col-span-2">
-        <div className="relative flex-1 overflow-hidden">
+      <Card className="group relative flex flex-col overflow-hidden border-amber-300/70 bg-[#0d0d14]/90 pt-0 shadow-[0_24px_80px_-36px_rgba(245,158,11,0.45)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-amber-200 hover:shadow-[0_32px_80px_-28px_rgba(245,158,11,0.65)]">
+        <div className="relative aspect-[16/9] overflow-hidden">
           {championship.image ? (
             <img
               src={championship.image}
               alt={championship.imageAlt}
-              className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+              className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
               loading="lazy"
             />
-          ) : null}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d14] via-[#0d0d14]/75 to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,43,43,0.35),transparent_35%),linear-gradient(180deg,transparent,rgba(8,8,12,0.95))]" />
+          ) : (
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(255,43,43,0.28),transparent_60%),linear-gradient(180deg,rgba(8,8,12,0.85),rgba(8,8,12,0.98))]" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d14] via-[#0d0d14]/40 to-transparent" />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.06)_50%,transparent_100%)] opacity-0 transition group-hover:opacity-100" />
 
-          <div className="relative flex h-full flex-col justify-between p-6 sm:p-7">
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="outline" className="rounded-full border-white/15 bg-black/35 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70 backdrop-blur-sm">
-                {championship.eyebrow ?? "Projeto em destaque"}
-              </Badge>
-              <Badge className="rounded-full bg-primary/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-white backdrop-blur-sm">
-                {championship.statusBadge ?? championship.game}
-              </Badge>
+          <Badge variant="outline" className="absolute left-4 top-4 rounded-full border-amber-300/40 bg-black/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-amber-200 backdrop-blur-sm">
+            {championship.eyebrow ?? "Campeonato em destaque"}
+          </Badge>
+
+          <Badge className="absolute right-4 top-4 rounded-full bg-amber-400/90 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-black backdrop-blur-sm">
+            {championship.statusBadge ?? championship.game}
+          </Badge>
+        </div>
+
+        <div className="flex flex-1 flex-col gap-4 p-5">
+          <div>
+            <CardTitle className="text-xl font-bold leading-snug text-white">
+              {championship.title}
+            </CardTitle>
+            <CardDescription className="mt-1.5 text-sm text-white/55">
+              {championship.summary ?? "Campeonato presencial — vagas limitadas"}
+            </CardDescription>
+          </div>
+
+          <div className="mt-auto grid grid-cols-2 gap-2">
+            <div className="flex items-center gap-2 rounded-xl border border-amber-300/15 bg-white/4 px-3 py-2.5">
+              <CalendarDaysIcon className="size-3.5 shrink-0 text-amber-300" />
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">Data</p>
+                <p className="text-xs font-semibold text-white">{championship.date}</p>
+              </div>
             </div>
 
-            <div className="max-w-xl space-y-4">
+            <div className="flex items-center gap-2 rounded-xl border border-amber-300/15 bg-white/4 px-3 py-2.5">
+              <MapPinIcon className="size-3.5 shrink-0 text-amber-300" />
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-primary/90">
-                  {championship.game}
-                </p>
-                <CardTitle className="mt-2 text-4xl font-black uppercase leading-[0.95] text-white sm:text-5xl">
-                  {championship.title}
-                </CardTitle>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">Local</p>
+                <p className="text-xs font-semibold text-white">{championship.location}</p>
               </div>
+            </div>
 
-              <CardDescription className="max-w-lg text-sm leading-6 text-white/70 sm:text-base">
-                {championship.summary}
-              </CardDescription>
-
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">Data</p>
-                  <p className="mt-1 text-sm font-semibold text-white">{championship.date}</p>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">Local</p>
-                  <p className="mt-1 text-sm font-semibold text-white">{championship.location}</p>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-sm">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">Categoria</p>
-                  <p className="mt-1 text-sm font-semibold text-white">{championship.category}</p>
-                </div>
+            <div className="col-span-2 flex items-center gap-2 rounded-xl border border-amber-300/15 bg-white/4 px-3 py-2.5">
+              <TrophyIcon className="size-3.5 shrink-0 text-amber-300" />
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-white/40">Categoria</p>
+                <p className="text-xs font-semibold text-white">{championship.category}</p>
               </div>
             </div>
           </div>
         </div>
 
-        <CardFooter className="border-t border-white/8 bg-black/25 px-6 py-4">
+        <CardFooter className="border-t border-amber-300/10 bg-black/20 px-5 py-4">
           <a
             href={championship.href}
             aria-label={`Ver detalhes do ${championship.title}`}
             rel="noreferrer"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "w-full rounded-full bg-primary text-sm font-bold uppercase tracking-wide text-white hover:bg-primary/85 sm:w-auto",
+              "w-full rounded-full bg-amber-400 text-sm font-bold uppercase tracking-wide text-black hover:bg-amber-300",
             )}
           >
             {championship.ctaLabel ?? "Ver campeonato"}
