@@ -45,7 +45,7 @@ type Championship = {
 };
 
 const championships: Championship[] = [
-  {
+  /*{
     id: "vct-sp",
     title: "VCT-SP",
     date: "05/07",
