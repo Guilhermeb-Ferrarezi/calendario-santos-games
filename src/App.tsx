@@ -62,7 +62,7 @@ const championships: Championship[] = [
     image: appPath("vct-ribeirao_sga.avif"),
     imageAlt: "Arte do campeonato VCT-SP da Santos Games Arena",
     href: "https://santos-games.com/vct-sp/",
-  },
+  },*/
   {
     id: "vct-ribeirao-all-rank",
     title: "VCT Ribeirão - All Rank",
